@@ -56,5 +56,4 @@ cp -f %{libdir}/build/%{gir}.gir %{buildroot}%{_datadir}/gir-1.0/%{gir}.gir
 
 #-- CHANGELOG -----------------------------------------------------------------#
 %changelog
-* Sun, Jan 18 2025 João Dias <joaovodias@gmail.com> - 0.0.1-1
-- Initial release for Fedora COPR
+%autochangelog
