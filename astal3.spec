@@ -51,7 +51,7 @@ cp -f %{libdir}/build/%{gir}.gir %{buildroot}%{_datadir}/gir-1.0/%{gir}.gir
 
 #-- FILES ---------------------------------------------------------------------#
 %files
-%{_datadir}/gir-1.0/%{gir}.gir
+%{_builddir}%{_datadir}/gir-1.0/%{gir}.gir
 
 #-- CHANGELOG -----------------------------------------------------------------#
 %changelog
