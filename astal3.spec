@@ -4,13 +4,12 @@
 
 
 Name: astal3
-Version: 3.0.0
+Version: 0.0.1
 Release: 1%{?dist}
 License: LGPL-2.1
 Summary: GTK3 building blocks for creating custom desktop shells
 
 URL: https://github.com/Aylur/astal
-VCS: {{{ git_dir_vcs }}}
 BuildArch: x86_64
 
 Source0: https://github.com/Aylur/astal/archive/refs/heads/main.tar.gz
@@ -57,4 +56,5 @@ cp -f %{libdir}/build/%{gir}.gir %{buildroot}%{_datadir}/gir-1.0/%{gir}.gir
 
 #-- CHANGELOG -----------------------------------------------------------------#
 %changelog
-{{{ git_dir_changelog }}}                  
+* Sun, Jan 18 2025 João Dias <joaovodias@gmail.com> - 0.0.1-1
+- Initial release for Fedora COPR
