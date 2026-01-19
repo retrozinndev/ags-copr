@@ -1,11 +1,11 @@
-%global lib gtk3
-%global gir Astal-3.0
+%global lib io
+%global gir AstalIO-0.1
 
 
-Name: astal3
+Name: astal-io
 Version: 0.0.1
 Release: 1%{?dist}
-Summary: GTK3 building blocks for creating custom desktop shells
+Summary: Building blocks for creating custom desktop shells
 License: LGPL-2.1
 BuildArch: x86_64
 URL: https://github.com/Aylur/astal
@@ -22,15 +22,13 @@ BuildRequires: meson
 BuildRequires: valadoc
 BuildRequires: gobject-introspection-devel
 BuildRequires: gtk3-devel
+BuildRequires: glib2-devel
 BuildRequires: gtk-layer-shell-devel
-BuildRequires: astal-io
 
 #-- APPLICATION DEPENDENCIES ---------------------------------------------------#
 Requires: vala
 Requires: gobject-introspection
-Requires: gtk3
-Requires: gtk-layer-shell
-Requires: astal-io
+Requires: glib2
 
 #-- OPTIONAL DEPENDENCIES ------------------------------------------------------#
 #-- none... -----#
@@ -61,6 +59,6 @@ meson compile -C build
 
 #-- CHANGELOG -----------------------------------------------------------------#
 %changelog
-* Sun Jan 18 2026 João Dias <joaovodias@gmail.com> - 0.0.1-1
+* Sun Jan 19 2026 João Dias <joaovodias@gmail.com> - 0.0.1-1
 - Initial release for Fedora copr
 
