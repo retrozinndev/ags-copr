@@ -1,16 +1,25 @@
+# version numbers
+%global masterver 3
+%global minorver 0
+%global patchver 0
+# -------
+# simplever is a minified version of the main version numbers, if it has a patch number higher than 0, it should be explicitly added here
+%global simplever %{masterver}.%{minorver}
 %global lib gtk3
-%global gir Astal-3.0
+%global header astal
+%global vapi astal-%{simplever}
+%global gir Astal-%{simplever}
+%global libheader lib%{header}
+%global libdir %{_builddir}/astal-main/lib/astal/%{lib}
 
 
 Name: astal3
-Version: 0.0.1
+Version: %{masterver}.%{minorver}.%{patchver}
 Release: 1%{?dist}
 Summary: GTK3 building blocks for creating custom desktop shells
 License: LGPL-2.1
 BuildArch: x86_64
 URL: https://github.com/Aylur/astal
-
-%global libdir %{_builddir}/astal-main/lib/astal/%{lib}
 
 Source0: https://github.com/Aylur/astal/archive/refs/heads/main.tar.gz
 
@@ -56,8 +65,14 @@ meson compile -C build
 
 #-- FILES ---------------------------------------------------------------------#
 %files
-%{_datadir}/gir-1.0/%{gir}.gir
-%{_datadir}/girepository-1.0/%{gir}.typelib
+/usr/local/lib64/%{libheader}.so.%{version}
+/usr/local/include/%{header}.h
+/usr/local/share/vala/vapi/%{libheader}-%{simplever}.vapi
+/usr/local/share/gir-1.0/%{gir}.gir
+/usr/local/lib64/girepository-1.0/%{gir}.typelib
+/usr/local/lib64/pkg-config/%{header}-%{simplever}.pc
+/usr/local/lib64/%{libheader}.so.%{masterver}
+/usr/local/lib64/%{libheader}.so
 
 #-- CHANGELOG -----------------------------------------------------------------#
 %changelog

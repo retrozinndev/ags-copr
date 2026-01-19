@@ -1,16 +1,26 @@
+# version numbers
+%global masterver 0
+%global minorver 1
+%global patchver 0
+# -------
+# simplever is a minified version of the main version numbers, if it has a patch number higher than 0, it should be explicitly added here
+%global simplever %{masterver}.%{minorver}
 %global lib io
-%global gir AstalIO-0.1
+%global header astal-io
+%global bin astal
+%global vapi astal-io-%{simplever}
+%global gir AstalIO-%{simplever}
+%global libheader lib%{header}
+%global libdir %{_builddir}/astal-main/lib/astal/%{lib}
 
 
 Name: astal-io
-Version: 0.0.1
+Version: %{masterver}.%{minorver}.%{patchver}
 Release: 1%{?dist}
 Summary: Building blocks for creating custom desktop shells
 License: LGPL-2.1
 BuildArch: x86_64
 URL: https://github.com/Aylur/astal
-
-%global libdir %{_builddir}/astal-main/lib/astal/%{lib}
 
 Source0: https://github.com/Aylur/astal/archive/refs/heads/main.tar.gz
 
@@ -21,7 +31,6 @@ BuildRequires: rpm-build
 BuildRequires: meson
 BuildRequires: valadoc
 BuildRequires: gobject-introspection-devel
-BuildRequires: gtk3-devel
 BuildRequires: glib2-devel
 BuildRequires: gtk-layer-shell-devel
 
@@ -54,8 +63,15 @@ meson compile -C build
 
 #-- FILES ---------------------------------------------------------------------#
 %files
-%{_datadir}/gir-1.0/%{gir}.gir
-%{_datadir}/girepository-1.0/%{gir}.typelib
+/usr/local/lib64/%{libheader}.so.%{version}
+/usr/local/include/%{header}.h
+/usr/local/share/vala/vapi/%{libheader}-%{simplever}.vapi
+/usr/local/share/gir-1.0/%{gir}.gir
+/usr/local/lib64/girepository-1.0/%{gir}.typelib
+/usr/local/bin/%{bin}
+/usr/local/lib64/pkg-config/%{header}-%{simplever}.pc
+/usr/local/lib64/%{libheader}.so.%{masterver}
+/usr/local/lib64/%{libheader}.so
 
 #-- CHANGELOG -----------------------------------------------------------------#
 %changelog
