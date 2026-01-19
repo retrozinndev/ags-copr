@@ -10,6 +10,7 @@
 %global gir Astal-%{simplever}
 %global libheader lib%{header}
 %global libdir %{_builddir}/astal-main/lib/astal/%{lib}
+%global debug_package %{nil}
 
 
 Name: astal3
