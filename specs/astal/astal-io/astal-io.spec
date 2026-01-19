@@ -68,7 +68,7 @@ meson compile -C build
 /usr/local/share/gir-1.0/%{gir}.gir
 /usr/local/lib64/girepository-1.0/%{gir}.typelib
 /usr/local/bin/%{bin}
-/usr/local/lib64/pkg-config/%{header}-%{simplever}.pc
+/usr/local/lib64/pkgconfig/%{header}-%{simplever}.pc
 /usr/local/lib64/%{libheader}.so.%{masterver}
 /usr/local/lib64/%{libheader}.so
 
