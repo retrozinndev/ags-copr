@@ -8,7 +8,6 @@
 %global lib io
 %global header astal-io
 %global bin astal
-%global vapi astal-io-%{simplever}
 %global gir AstalIO-%{simplever}
 %global libheader lib%{header}
 %global libdir %{_builddir}/astal-main/lib/astal/%{lib}
@@ -65,7 +64,7 @@ meson compile -C build
 %files
 /usr/local/lib64/%{libheader}.so.%{version}
 /usr/local/include/%{header}.h
-/usr/local/share/vala/vapi/%{libheader}-%{simplever}.vapi
+/usr/local/share/vala/vapi/%{header}-%{simplever}.vapi
 /usr/local/share/gir-1.0/%{gir}.gir
 /usr/local/lib64/girepository-1.0/%{gir}.typelib
 /usr/local/bin/%{bin}
