@@ -16,6 +16,8 @@ Source0: https://github.com/Aylur/astal/archive/refs/heads/main.tar.gz
 
 #-- BUILD DEPENDENCIES ---------------------------------------------------------#
 BuildRequires: rpmspectool
+BuildRequires: rpmdevtools
+BuildRequires: rpmbuild
 BuildRequires: meson
 BuildRequires: valadoc
 BuildRequires: gobject-introspection-devel
