@@ -10,17 +10,9 @@ License: LGPL-2.1
 BuildArch: x86_64
 URL: https://github.com/Aylur/astal
 
-%global libdir %{_builddir}/lib/astal/%{lib}
+%global libdir lib/astal/%{lib}
 
 Source0: https://github.com/Aylur/astal/archive/refs/heads/main.tar.gz
-
-#-- APPLICATION DEPENDENCIES ---------------------------------------------------#
-Requires: gobject-introspection
-Requires: gtk3
-Requires: gtk-layer-shell
-
-#-- OPTIONAL DEPENDENCIES ------------------------------------------------------#
-#-- none... -----#
 
 #-- BUILD DEPENDENCIES ---------------------------------------------------------#
 BuildRequires: meson
@@ -30,29 +22,37 @@ BuildRequires: gobject-introspection-devel
 BuildRequires: gtk3-devel
 BuildRequires: gtk-layer-shell-devel
 
+#-- APPLICATION DEPENDENCIES ---------------------------------------------------#
+Requires: meson
+Requires: gobject-introspection
+Requires: gtk3
+Requires: gtk-layer-shell
+
+#-- OPTIONAL DEPENDENCIES ------------------------------------------------------#
+#-- none... -----#
+
 %description
 %{summary}
 
 #-- PREP, BUILD & INSTALL -----------------------------------------------------#
 %prep
-%autosetup
-tar -xvzf %{SOURCE0} --directory %{_builddir}
+%setup -q -n astal-main
+#tar -xvzf "$(dirname "%{SOURCE0}")/astal-main.tar.gz" --directory %{_builddir}
 
 %build
-cd %{libdir}
+cd ./%{libdir}
 meson setup build
 meson compile -C build
 
 %install
-mkdir -p %{buildroot}%{_datadir}/gir-1.0
 meson install -C %{libdir}/build --destdir %{buildroot}
-
 
 # %post
 
 #-- FILES ---------------------------------------------------------------------#
 %files
 %{_datadir}/gir-1.0/%{gir}.gir
+%{_datadir}/girepository-1.0/%{gir}.typelib
 
 #-- CHANGELOG -----------------------------------------------------------------#
 %changelog
