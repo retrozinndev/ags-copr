@@ -10,20 +10,19 @@ License: LGPL-2.1
 BuildArch: x86_64
 URL: https://github.com/Aylur/astal
 
-%global libdir lib/astal/%{lib}
+%global libdir %{_builddir}/astal-main/lib/astal/%{lib}
 
 Source0: https://github.com/Aylur/astal/archive/refs/heads/main.tar.gz
 
 #-- BUILD DEPENDENCIES ---------------------------------------------------------#
 BuildRequires: meson
-BuildRequires: vala
 BuildRequires: valadoc
 BuildRequires: gobject-introspection-devel
 BuildRequires: gtk3-devel
 BuildRequires: gtk-layer-shell-devel
 
 #-- APPLICATION DEPENDENCIES ---------------------------------------------------#
-Requires: meson
+Requires: vala
 Requires: gobject-introspection
 Requires: gtk3
 Requires: gtk-layer-shell
@@ -36,16 +35,17 @@ Requires: gtk-layer-shell
 
 #-- PREP, BUILD & INSTALL -----------------------------------------------------#
 %prep
-%setup -q -n astal-main
-#tar -xvzf "$(dirname "%{SOURCE0}")/astal-main.tar.gz" --directory %{_builddir}
+%autosetup
+spectool %{name}.spec -g -S -C %{_sourcedir}
+tar -xf %{_sourcedir}/main.tar.gz --directory %{_builddir}
 
 %build
-cd ./%{libdir}
+cd %{libdir}
 meson setup build
 meson compile -C build
 
 %install
-meson install -C %{libdir}/build --destdir %{buildroot}
+%meson_install -C %{libdir}/build --destdir %{buildroot}
 
 # %post
 
@@ -58,3 +58,4 @@ meson install -C %{libdir}/build --destdir %{buildroot}
 %changelog
 * Sun Jan 18 2026 João Dias <joaovodias@gmail.com> - 0.0.1-1
 - Initial release for Fedora copr
+
