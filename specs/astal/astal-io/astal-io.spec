@@ -18,10 +18,9 @@ Name: astal-io
 Version: %{masterver}.%{minorver}.%{patchver}
 Release: 1%{?dist}
 Summary: Building blocks for creating custom desktop shells
-License: LGPL-2.1
-BuildArch: x86_64
-URL: https://github.com/Aylur/astal
 
+License: LGPL-2.1
+URL: https://github.com/Aylur/astal
 Source0: https://github.com/Aylur/astal/archive/refs/heads/main.tar.gz
 
 #-- BUILD DEPENDENCIES ---------------------------------------------------------#
@@ -53,7 +52,7 @@ tar -xf %{_sourcedir}/main.tar.gz --directory %{_builddir}
 
 %build
 cd %{libdir}
-meson setup build
+meson setup build --prefix=/usr
 meson compile -C build
 
 %install
