@@ -55,7 +55,7 @@ tar -xf %{_sourcedir}/main.tar.gz --directory %{_builddir}
 
 %build
 cd %{libdir}
-meson setup build
+meson setup build --prefix=/usr
 meson compile -C build
 
 %install
